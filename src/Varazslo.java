@@ -4,13 +4,20 @@ public class Varazslo extends Karakter {
     public Varazslo(String nev, int eletero, int gyorsasag, String targy) {
         super(nev, eletero, gyorsasag, targy);
     }
-    private int Manna;
+    private int mannapont;
     public int getManna() {
-        return Manna;
+        return mannapont;
     }
 
     public void setManna(int manna) {
-        Manna = manna;
+        //megkötéssel
+        if (0 < manna && manna < 13) {
+            mannapont = manna;
+        }
+        else {
+            System.out.println("Hibás Varázserő értékmegadás!");
+        }
+
     }
 
     @Override
