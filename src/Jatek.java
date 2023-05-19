@@ -22,11 +22,15 @@ public class Jatek {
 
         }
 
-        if (!int2bool(h.getEletero())) {
+        if (!int2bool(h.getEletero()) && !int2bool(v.getEletero())) {
+            System.out.println();
+            System.out.println("Szörnyű tragédia! Nincs túlélő!");
+        }
+        else if (!int2bool(h.getEletero())) {
             System.out.println();
             System.out.println(v.getNev() + " a varázsló győzőtt!");
         }
-        if (!int2bool(v.getEletero())) {
+        else if (!int2bool(v.getEletero())) {
             System.out.println();
             System.out.println(h.getNev() + " a harcos győzőtt!");
         }
