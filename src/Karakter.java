@@ -59,7 +59,8 @@ public class Karakter {
             this.eletero = eletero;
         }
         else {
-            System.out.println("Hibás Életerő értékmegadás!");
+            this.eletero = WvW_game.kockadobasD6();
+            System.out.println("Hibás Életerő értékmegadás! d6 érték lett beállítva");
         }
     }
 
@@ -73,7 +74,8 @@ public class Karakter {
             this.gyorsasag = gyorsasag;
         }
         else {
-            System.out.println("Hibás Gyorsaság értékmegadás!");
+            this.pozicio = WvW_game.kockadobasD6();
+            System.out.println("Hibás Gyorsaság értékmegadás! d6 érték lett beállítva");
         }
     }
 
@@ -90,10 +92,55 @@ public class Karakter {
     }
 
     public void setPozicio(int pozicio) {
-        this.pozicio = pozicio;
+        if (1<pozicio && pozicio< WvW_game.jatekter.length){
+            this.pozicio = pozicio;
+        }
+        else {
+            this.pozicio = 2;
+            System.out.println("Hibás pozíció megadás! Karakter a 2-es pozícióba került!");
+        }
     }
 
-    //constructor
+    //Konstruktor, a hivaslanc a jelen programban nem szukseges
+    // csak mukodesbiztonsagi okokbol
+    public Karakter() {
+        this("Karakter");
+        System.out.println("Hiba! Karakter nevet meg kell adni!");
+        //"Karakter" + this.hashCode() nem mukodik,
+        // mert az obj nincs meg kesz es nincs hashcode-ja
+        /* fuggvenyhivas sem lehetseges, mert
+        nem lehet a visszateresi erteket atadni (a konstruktorlancban):
+        String nev;
+        nev = randomNevGeneralas();*/
+    }
+    public Karakter(String nev) {
+        this(nev, WvW_game.kockadobasD6()+3);
+        /*int eletero;
+        eletero = WvW_game.kockadobasD6()+3;*/
+        
+    }
+    public Karakter(String nev, int eletero) {
+        this(nev, eletero, WvW_game.kockadobasD6());
+        /*int gyorsasag;
+        gyorsasag = WvW_game.kockadobasD6();*/
+        
+    }
+    public Karakter(String nev, int eletero, int gyorsasag) {
+        this(nev, eletero, gyorsasag, "n.a.");
+        //String targy = targygeneralas();//
+    }
+
+    private String targygeneralas() {
+        String targy;
+        if (this.getClass().getTypeName().equals("Harcos")) {
+            targy = "kard";
+        }
+        else {
+            targy = "varazsbot";
+        }
+        return targy;
+    }
+
     public Karakter(String nev, int eletero, int gyorsasag, String targy) {
         this.nev = nev;
         this.eletero = eletero;
@@ -103,11 +150,35 @@ public class Karakter {
 
     @Override
     public String toString() {
-        return "Karakter | neve: " +nev + "ÉP: " +eletero + "Gy: " +gyorsasag +"T: " +targy;
+        String adat1 = "Karakter | neve: " + this.getNev() + " ÉP: " + this.getEletero() +
+                " Gy: " + this.getGyorsasag() + " Tárgy: " + this.getTargy();
+        // az egyedi (H / V) tulajdonsagokat nem tudom lekerdezni/kiiratni
+        return adat1;
     }
 
-    public void kiir() {
-        System.out.println( "Karakter | neve: " + this.getNev() + " ÉP: " +this.getEletero() + " Gy: " +this.getGyorsasag() +" T: " +this.getTargy());
+    public void kiir() {  //refaktoralva
+        System.out.println(this.toString());
     }
 
+    private String randomNevGeneralas() {
+        int a_Limit = 97; // "a" betu ASCII kodja
+        int z_Limit = 122; // "z" betu ASCII kodja
+        int nevHossz = 6;
+        Random r = new Random();
+        StringBuilder buffer = new StringBuilder(nevHossz);
+        for (int k = 0; k < nevHossz; k++) {
+            int randomLimitedInt = a_Limit + (int)(r.nextFloat() * (z_Limit - a_Limit +1 ));
+            // elso karakter nagybetu
+            if (k==0) {
+                Character c = (char)randomLimitedInt;
+                buffer.append(Character.toUpperCase(c));
+            }
+            else {
+                buffer.append((char) randomLimitedInt);
+            }
+
+        }
+        String generaltString = buffer.toString();
+        return generaltString;
+    }
 }

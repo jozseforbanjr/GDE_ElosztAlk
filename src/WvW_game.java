@@ -25,7 +25,7 @@ public class WvW_game {
         h1.setPozicio(2);
         v1.setManna(v1mp);
         v1.setPozicio(4);
-        h1.kiir();
+        h1.kiir(); //refaktoralva egy .toString @Override implementalas miatt
         v1.kiir();
 
 
