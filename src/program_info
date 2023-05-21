@@ -1,12 +1,15 @@
-Ver 1: A játék program előkészítése, karakterek
+___________________________________________________
+| Ver 1: A játék program előkészítése, Karakterek |
+---------------------------------------------------
+
 A feladatban megadottak:
-Harcos és Varázsló: karakterek
-közös tulajdonságok:
+Karakterek (öröklődés innen): Harcos és Varázsló
+közös tulajdonságok (Karakterek osztályban definiálva):
 - van életerejük (int)
-- van pozíciójuk (valamilyen paraméter), int-et választottam, 3 értékű lehet (lásd játéktér leírás alapján)
-- tudnak lépni
+- van pozíciójuk (valamilyen paraméter), int-et választottam, 3 értékű lehet (lásd Játéktér leírás, feladat alapján)
+- tudnak lépni (mozogni a Játéktérben)
 - tudnak harcolni (sebezni) -> kifejtés lejjebb
-- (gyorsaság, később jelentős lehet a melyik karakter cselekszik előbb kérdésnél, nem alapfeladat)
+- (ráadás: gyorsaság, később jelentős lehet a melyik karakter cselekszik előbb kérdésnél, nem alapfeladat)
 
 Megjegyzés:
 - az extends kódban való használata miatt a 2 karakter egyedi tulajdonságokat kapott
@@ -16,8 +19,10 @@ H: erő - nincs felhasználva (felhasználási opciók később, nem az alap szo
 d6: 6 oldalú dobókocka; 1-6 közötti (random) értékkel
 életerő d6+3: a kockadobás eredménye +3, azaz [4-9] értéktartomány (random)
 
--------------------------------------------
-Ver 2: játéktér kidolgozása (JT)
+____________________________________
+| Ver 2: játéktér kidolgozása (JT) |
+------------------------------------
+
 H_V: Harcos, továbbiakban H (1-es pozícióban), egy "térköz" (itt aláhúzás), Varázsló, továbbiakban V a 3-as pozícióban
 X__: H és V azonos pozícióban (itt egyes), harcolnak -> életerő változik (lejjebb kifejtve)
 
@@ -45,8 +50,10 @@ Igazából 5 mező, amiből a két szél mindig a "|" karakter, a közbülsők a
 4) A Harcos pozícióját a "H" jelöli, a Varázslóét a "V", azonos pozíciónál "X" (= harc)
 5) Fal mellett csak "befele" lehet lépni, beljebb, viszont mindkét irányban (random)
 
------------------------------------------
-Ver 3: Játék: mozgás a játéktérben és harc a játékban
+_________________________________________________________
+| Ver 3: Játék: mozgás a játéktérben és harc a játékban |
+---------------------------------------------------------
+
 Játék:
 1) körökből áll
 - 1 adott körben mindkét játékos egyszerre léphet (lép, vagy nem)
@@ -82,9 +89,11 @@ maximum nélküli módon bármilyen számú körből állhat.
 Érdemes egy "harcra koncentráló"/"begőzölt" módot létrehozni, amikor
 (legalább az egyik) játékos nem távolodhat (lépésméret 1, vagy 0 is lehet!) a másiktól.
 
-------------------------------------------
-Ver 4:
-Programozási megjegyzés 1: *** Konstruktor lánc létrehozás ***
+_______________________________________________________
+| Ver 4: Konstruktor híváslánc és @Override használat |
+-------------------------------------------------------
+
+Programozási megjegyzés 1: *** Konstruktor híváslánc létrehozás ***
 Konstruktor lánc létrehozása "biztonsági okokból" / bemutató jelleggel.
 Egyébként szükségtelen, mert a program konkrét értékekkel tölti fel a Karakterek tulajdonságait.
 Tesztelések (még kommentelve bent maradnak):
@@ -100,3 +109,13 @@ Programozási megjegyzés 2: *** @Override használat ***
 Karakter.kiir() refaktorálva egy .toString metódus felülírás (@Override) kódban való használata / implementálása céljából
 
 + program_info fájl létrehozása (ez a fájl)
+
+_____________________________________________________
+| Ver 5: Program Info pontosítás, verziók definiálása |
+------------------------------------------------------
+
+Ez az info fájl a Megrendelővel való egyeztetésre szolgál(hatna):
+Folyamatok haladása, saját meggondolások dokumentálása, ...
+
+A fájl tartalma pontosításra került.
+Az alapfeladat teljes.
