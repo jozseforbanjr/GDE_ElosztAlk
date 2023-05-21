@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 import static src.WvW_game.jatekter;
 
 public class Jatek {
-    
+    public static int korokszama = 0;
     void jatekMenet(Harcos h, Varazslo v) throws InterruptedException {
         h.setPozicio(2);
         v.setPozicio(4);
@@ -12,15 +12,22 @@ public class Jatek {
         //játékkör, amíg ... "Csak egy maradhat!"
         while (int2bool(h.getEletero()) && int2bool(v.getEletero())) {
 
-            //lepes
+            //lepesek
             h.lep();
             v.lep();
-
+            //megjelenites
             kirajzol(h, v);
 
             TimeUnit.MILLISECONDS.sleep(200);
-
+            korokszama += 1;
         }
+        
+        //Jatek vegi kiiratasok (Ver 5 utani refaktoralas)
+        jatekVegKiiras(h, v, korokszama);
+
+    }
+
+    private void jatekVegKiiras(Harcos h, Varazslo v, int korokszama) {
 
         if (!int2bool(h.getEletero()) && !int2bool(v.getEletero())) {
             System.out.println();
@@ -28,13 +35,22 @@ public class Jatek {
         }
         else if (!int2bool(h.getEletero())) {
             System.out.println();
-            System.out.println(v.getNev() + " a varázsló győzőtt!");
+            if (korokszama < 5) { // csak a Tulterheleses Polimorfizmus bemutatasara kialakitott elagazas
+                v.vegKiiras("A varázsló győzőtt! ", korokszama);
+            }
+            else {
+                v.vegKiiras("A varázsló győzőtt! ");
+            }
         }
         else if (!int2bool(v.getEletero())) {
-            System.out.println();
-            System.out.println(h.getNev() + " a harcos győzőtt!");
-        }
 
+            if (korokszama < 5) { // csak a Tulterheleses Polimorfizmus bemutatasara kialakitott elagazas
+                h.vegKiiras("A harcos győzőtt! ", korokszama);
+            }
+            else {
+                h.vegKiiras("A harcos győzőtt! ");
+            }
+        }
     }
 
     private void kirajzol(Harcos h, Varazslo v) {

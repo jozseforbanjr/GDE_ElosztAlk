@@ -2,7 +2,7 @@ package src;
 
 import java.util.Random;
 
-public class Karakter {
+public abstract class Karakter implements KarakterCselekvesek {
     private String nev;
     private int eletero;
     private int gyorsasag;
@@ -48,6 +48,7 @@ public class Karakter {
     public void setTargy(String targy) {
         this.targy = targy;
     }
+
 
     public int getEletero() {
         return eletero;
@@ -130,34 +131,22 @@ public class Karakter {
         //String targy = targygeneralas();//
     }
 
-    private String targygeneralas() {
-        String targy;
-        if (this.getClass().getTypeName().equals("Harcos")) {
-            targy = "kard";
-        }
-        else {
-            targy = "varazsbot";
-        }
-        return targy;
-    }
-
     public Karakter(String nev, int eletero, int gyorsasag, String targy) {
         this.nev = nev;
         this.eletero = eletero;
         this.gyorsasag = gyorsasag;
         this.targy = targy;
     }
-
     @Override
     public String toString() {
-        String adat1 = "Karakter | neve: " + this.getNev() + " ÉP: " + this.getEletero() +
+        String adat1 = "Karakter | neve: " + this.getNev() + " EP: " + this.getEletero() +
                 " Gy: " + this.getGyorsasag() + " Tárgy: " + this.getTargy();
         // az egyedi (H / V) tulajdonsagokat nem tudom lekerdezni/kiiratni
         return adat1;
     }
 
     public void kiir() {  //refaktoralva
-        System.out.println(this.toString());
+        System.out.println( this ); //Java javaslat alapjan .toString() nem szukseges
     }
 
     private String randomNevGeneralas() {
@@ -176,9 +165,19 @@ public class Karakter {
             else {
                 buffer.append((char) randomLimitedInt);
             }
-
         }
         String generaltString = buffer.toString();
         return generaltString;
+    }
+
+    private String targygeneralas() {
+        String targy;
+        if (this.getClass().getTypeName().equals("Harcos")) {
+            targy = "kard";
+        }
+        else {
+            targy = "varazsbot";
+        }
+        return targy;
     }
 }

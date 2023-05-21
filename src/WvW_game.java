@@ -17,17 +17,19 @@ public class WvW_game {
         final int v1mp = kockadobasD6() + kockadobasD6() +2; //manna pont
 
         //nev; eletero; gyorsasag; targy;
-        Harcos h1 = new Harcos("Ron",h1ee,8,"kard");
-        Varazslo v1 = new Varazslo("Trix",v1ee,12,"varazsbot");
+        // "Polimorfizmus" példa:
+        Karakter harcos_KarakterTipus = new Harcos("Ron",h1ee,8,"kard");
+        Karakter varazslo_KarakterTipus = new Varazslo("Trix",v1ee,12,"varazsbot");
 
-        //h1.toString();//
+        // a helyes mukodeshez at kell castolni a megfelelo tipusra a ket Karakter objektumot
+        Harcos h1 = (Harcos) harcos_KarakterTipus;
         h1.setEro(h1ero);
         h1.setPozicio(2);
+        Varazslo v1 = (Varazslo) varazslo_KarakterTipus;
         v1.setManna(v1mp);
         v1.setPozicio(4);
         h1.kiir(); //refaktoralva egy .toString @Override implementalas miatt
         v1.kiir();
-
 
         //v1.toString();//
         Jatek jatek = new Jatek();

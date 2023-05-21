@@ -119,3 +119,23 @@ Folyamatok haladása, saját meggondolások dokumentálása, ...
 
 A fájl tartalma pontosításra került.
 Az alapfeladat teljes.
+
+_______________________________________________________
+| Ver 6: Interfész használata + Polimorfizmus, Öröklődés |
+-------------------------------------------------------
+1) Interfész: a Karakterek közös tulajdonságait a KarakterCselekvesek (jobb nem jutott eszembe) interfészben adtam meg.
+A Karakter valósítja meg (implements) a megadott tulajdonságokat, amiket aztán (már az első verziótól fogva) a Harcos és Varázsló osztály örököl.
+
+2) A Polimorfizmus két módszere: Túlterhelés / Felülírás
+A) Túlterhelés
+A Harcos és a Varázsló osztály vegKiiras() metódusánál, (String), vagy (String, int) paraméterekkel -> eltér a kiírt szöveg.
+Nem a legértelmesebb metódus túlterhelési példa, de működik.
+
+B) Felülírás:
+- Megvalósítva az Object.toString() metódus felülírásával (Karakter / Harcos / Varazslo osztályokban egyaránt).
+- A Karakter.kiir() metódus felülírása a Harcos és Varazslo osztályokban
+
+Tanulság: Felülírt (@Override) metódust nem lehet túlterehelni (kétféleképpen felülírni a metódust)!
+
+Megjegyzés: Java javaslat alapján  a println-eknél a .toString() nem szükséges.
+Javítottam, következő verzióban a kommenteket kiszedem.
