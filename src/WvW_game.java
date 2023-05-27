@@ -9,7 +9,7 @@ public class WvW_game {
 
     public static String[] jatekter = {"|", " ", " ", " ", "|"}; //= new String[5]
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RuntimeException, KivetelCheckedException {
 
         final int h1ee = kockadobasD6() +3; //életerő
         final int h1ero = kockadobasD6() +6; //erő
@@ -35,6 +35,12 @@ public class WvW_game {
         Jatek jatek = new Jatek();
         try {
             jatek.jatekMenet(h1,v1);
+        }
+        catch (KivetelCheckedException kiv) {
+            throw new KivetelCheckedException(kiv.getMessage().toString());
+        }
+        catch (RuntimeException e) {
+            throw new RuntimeException(e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

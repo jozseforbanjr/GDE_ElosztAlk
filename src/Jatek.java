@@ -1,11 +1,14 @@
 package src;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import static src.WvW_game.jatekter;
 
 public class Jatek {
     public static int korokszama = 0;
-    void jatekMenet(Harcos h, Varazslo v) throws InterruptedException {
+    void jatekMenet(Harcos h, Varazslo v) throws InterruptedException, KivetelCheckedException {
         h.setPozicio(2);
         v.setPozicio(4);
         kirajzol(h, v); //kezdo allapot
@@ -18,8 +21,16 @@ public class Jatek {
             //megjelenites
             kirajzol(h, v);
 
-            TimeUnit.MILLISECONDS.sleep(200);
+            TimeUnit.MILLISECONDS.sleep(200); // throws InterruptedException
             korokszama += 1;
+            // saját kivétel függvény, teszteléshez célszerű pl. 3-ra állítani a korokszama max. szintjét
+            if (korokszama > 10) {
+                jatekVegKiiras( h, v, korokszama);
+                String error_info = "Túl sokáig tart a játék!";
+                System.err.println(error_info); //java: unreachable statement hibát dobnak futtatáskor
+                Logger.getLogger(WvW_game.class.getName()).log(Level.WARNING, null, error_info);
+                throw new KivetelCheckedException(error_info);
+            }
         }
         
         //Jatek vegi kiiratasok (Ver 5 utani refaktoralas)
@@ -50,6 +61,10 @@ public class Jatek {
             else {
                 h.vegKiiras("A harcos győzőtt! ");
             }
+        }
+        else {
+            h.vegKiiras("Elfáradt, hazamegy!        ");
+            v.vegKiiras("Elfáradt, szintén hazamegy! ");
         }
     }
 

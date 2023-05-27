@@ -1,3 +1,4 @@
+A feladat megoldásához JetBrains IntelliJ Idea rendszert használtam, valamint GIT-et verziókövetésre (Github).
 ___________________________________________________
 | Ver 1: A játék program előkészítése, Karakterek |
 ---------------------------------------------------
@@ -50,6 +51,9 @@ Igazából 5 mező, amiből a két szél mindig a "|" karakter, a közbülsők a
 4) A Harcos pozícióját a "H" jelöli, a Varázslóét a "V", azonos pozíciónál "X" (= harc)
 5) Fal mellett csak "befele" lehet lépni, beljebb, viszont mindkét irányban (random)
 
+Megjegyzés: a Harcos, Varázsló és a Játéktér a WvW_game-ben kódolt,
+míg a játék (cselekmény / "üzleti logika)" a Jatek-ban
+
 _________________________________________________________
 | Ver 3: Játék: mozgás a játéktérben és harc a játékban |
 ---------------------------------------------------------
@@ -86,7 +90,7 @@ de feltételezhetően az egyik fél életerejének 0-ra csökkenéséig.
 Program futási megjegyzés:
 A karakterek random mozgása miatt a játék minimum 2, és
 maximum nélküli módon bármilyen számú körből állhat.
-Érdemes egy "harcra koncentráló"/"begőzölt" módot létrehozni, amikor
+Érdemes lehet egy "harcra koncentráló"/"begőzölt" módot létrehozni, amikor
 (legalább az egyik) játékos nem távolodhat (lépésméret 1, vagy 0 is lehet!) a másiktól.
 
 _______________________________________________________
@@ -123,6 +127,7 @@ Az alapfeladat teljes.
 _______________________________________________________
 | Ver 6: Interfész használata + Polimorfizmus, Öröklődés |
 -------------------------------------------------------
+
 1) Interfész: a Karakterek közös tulajdonságait a KarakterCselekvesek (jobb nem jutott eszembe) interfészben adtam meg.
 A Karakter valósítja meg (implements) a megadott tulajdonságokat, amiket aztán (már az első verziótól fogva) a Harcos és Varázsló osztály örököl.
 
@@ -139,3 +144,12 @@ Tanulság: Felülírt (@Override) metódust nem lehet túlterehelni (kétfélek�
 
 Megjegyzés: Java javaslat alapján  a println-eknél a .toString() nem szükséges.
 Javítottam, következő verzióban a kommenteket kiszedem.
+
+___________________________________________
+| Ver 7: Saját kivételosztály használata  |
+-------------------------------------------
+
+Jobb ötlet híján "nem életszerű" feltétellel, ha túl hosszú a játék (több, mint 10 kör), akkor kivételt dob.
+A hibát a Jatek továbbadja a WvW_game osztálynak.
+A kivétel előtt kiírja a H és V tulajdnoságait és a Jatek.jatekVegKiiras() metódus kapott
+egy új else ágat (ami egyébként logikailag és tesztelés szempontból is hasznos).
