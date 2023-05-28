@@ -1,8 +1,9 @@
 package src;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public abstract class Karakter implements KarakterCselekvesek {
+public abstract class Karakter implements KarakterCselekvesek, Serializable {
     private String nev;
     private int eletero;
     private int gyorsasag;

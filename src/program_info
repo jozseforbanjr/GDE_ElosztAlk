@@ -151,5 +151,31 @@ ___________________________________________
 
 Jobb ötlet híján "nem életszerű" feltétellel, ha túl hosszú a játék (több, mint 10 kör), akkor kivételt dob.
 A hibát a Jatek továbbadja a WvW_game osztálynak.
-A kivétel előtt kiírja a H és V tulajdnoságait és a Jatek.jatekVegKiiras() metódus kapott
+A kivétel előtt kiírja a H és V tulajdonságait és a Jatek.jatekVegKiiras() metódus kapott
 egy új else ágat (ami egyébként logikailag és tesztelés szempontból is hasznos).
+
+KivetelCheckedException()
+
+________________________________________________
+| Ver 8: Állás mentési és betöltési lehetősége |
+------------------------------------------------
+
+Nincs definiálva, hogymilyen körülmények között, illetve, hogy milyen alkalmazással: konzolos, vagy GUI-s
+... még a "felugró ablakos" kitétel sem egyértelműsíti, hogy GUI-s kell legyen az alapszoftver, így
+1) a játék általában gyorsan véget ér
+2) menet közben minden körnél felhasználót megkérdezni, hogy akarja-e menteni (betölteni) nem életszerű
+3) bár a játék végén elvileg már nincs értelme menteni az állást (kivéve, ha a KivetelCheckedException miatt áll le)
+... de mégis első lépésként és a funkcionalitás működésének bemutatásaként
+- a játék elején kap lehetőséget állás betöltésre
+- a játék végén (vagy KivetelCheckedException esetben) kap lehetőséget állás mentésre,
+- amiből a KivetelCheckedException esetben menteni kell, míg
+- a játék normál lezárultával menthet (konzol prompt kérdés válasza alapján döntheti el)
+
+Mentett adatok: a Harcos és a Varázsló (mint objektum) aktuális adatai. (körök száma nem)
+
+Megjegyzés 1): Betöltéshez refaktoráltam a Wvw_game h1 és v1 objektumait statikusra.
+2) FILEIO-ba kiszerveztem a Jatek osztályból a fájlkezelési metódusokat
+DE! amíg azok a Jatekban rendesen működtek, addig a FileIO osztályban csak debug módban, sorról sorra lépve működtethetők.
+Kezeletlen Exception, vagy Timeout probléma okozhatja.
+Jelenlegi tudásom (és 2 óra internetes keresés + próbálkozás) nem teszi lehetővé, hogy megoldjam. Sajnos.
+Javaslatot szívesen elfogadok, hogy tanuljak belőle.
