@@ -22,7 +22,7 @@ public class Varazslo extends Karakter {
 
     @Override
     public void kiir() {
-        System.out.println( this ); //Java javaslat alapjan .toString() nem szukseges
+        System.out.println( this.toString() ); //Java javaslat alapjan .toString() nem szukseges, de felulirtam
     }
 
     public void vegKiiras(String informacio) {

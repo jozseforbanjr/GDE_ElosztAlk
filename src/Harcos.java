@@ -16,7 +16,7 @@ public class Harcos extends Karakter {
     }
     @Override
     public void kiir() {
-        System.out.println( this ); //Java javaslat alapjan .toString() nem szukseges
+        System.out.println( this.toString() ); //Java javaslat alapjan .toString() nem szukseges, de felulirtam
     }
     @Override
     public String toString() {
