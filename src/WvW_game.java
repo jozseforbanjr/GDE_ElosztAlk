@@ -3,6 +3,8 @@ package src;
 Warrior versus Wizard játék
 */
 
+import GUI.WizardvsWarrior;
+
 import java.util.Random;
 
 public class WvW_game {
@@ -15,6 +17,7 @@ public class WvW_game {
         final int h1ero = kockadobasD6() +6; //erő
         final int v1ee = kockadobasD6() +3; //életerő
         final int v1mp = kockadobasD6() + kockadobasD6() +2; //manna pont
+        final WizardvsWarrior wwgui = new WizardvsWarrior();
 
         //nev; eletero; gyorsasag; targy;
         // "Polimorfizmus" példa:

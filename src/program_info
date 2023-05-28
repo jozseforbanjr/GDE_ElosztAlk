@@ -153,3 +153,13 @@ Jobb ötlet híján "nem életszerű" feltétellel, ha túl hosszú a játék (t
 A hibát a Jatek továbbadja a WvW_game osztálynak.
 A kivétel előtt kiírja a H és V tulajdnoságait és a Jatek.jatekVegKiiras() metódus kapott
 egy új else ágat (ami egyébként logikailag és tesztelés szempontból is hasznos).
+
+_______________
+| Ver 9: GUI  |
+---------------
+
+A feladat részben megoldott. A játék menete nem jelenik meg a GUI megadott paneljének Jtextfield mezőjében.
+Tervben volt a GUI és a konzolos futtatás párhuzamosítása, emiatt az alap szoftverben számos függvényt (vagy részletet) refaktoráltam.
+Elsősorban szöveg generálásos metódusokat.
+A kihívást a static psvm-ből való Jtext-be kiíratás jelentette, amit átcsoprtosítottam és
+Thread thread = new Thread(new Runnable() {}); megoldással próbálkoztam - siketelenül.
